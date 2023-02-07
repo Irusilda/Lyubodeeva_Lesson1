@@ -2,6 +2,7 @@ package com.example.myweatherapp
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -16,9 +17,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getData("London")
 
+        binding.apply {
+            btnSearch.setOnClickListener {
 
+                fun isEmpty(): Boolean {
+                    if (userInput.text.isNullOrEmpty())
+                        userInput.error = getString(R.string.emptyField)
+                    return userInput.text.isNullOrEmpty()
+                }
+
+                if(!isEmpty()){
+                getData(userInput.text.toString())
+                }
+            }
+        }
     }
     private fun getData(cityName: String){
         val url = "http://api.weatherapi.com/v1/current.json?" +
@@ -31,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 parseData(response)
             },
             {
+                Toast.makeText(this, "Что-то пошло не так", Toast.LENGTH_LONG).show()
                 Log.d("MyLog", "Error: $it")
             }
         )
@@ -46,5 +60,18 @@ class MainActivity : AppCompatActivity() {
             responseMainObject?.optJSONObject("current")?.getString("humidity")
         )
         Log.d("MyLog", "$itemDayWeather")
+        binding.apply {
+            temp.text = itemDayWeather.current_temp
+            condition.text = itemDayWeather.condition_text
+            humidity.text = itemDayWeather.current_humidity
+
+            when(condition.text){
+                "Sunny" -> dayWeatherLayout.setBackgroundResource(R.drawable.sunny)
+                "Partly cloudy" -> dayWeatherLayout.setBackgroundResource(R.drawable.clouds)
+                "Mist" -> dayWeatherLayout.setBackgroundResource(R.drawable.mist)
+                "Fog" -> dayWeatherLayout.setBackgroundResource(R.drawable.fog)
+                else -> dayWeatherLayout.setBackgroundResource(R.drawable.mainback)
+            }
+        }
     }
 }

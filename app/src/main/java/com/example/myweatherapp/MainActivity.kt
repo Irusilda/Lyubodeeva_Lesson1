@@ -76,6 +76,7 @@ class MainActivity : AppCompatActivity() {
                 "Partly cloudy" -> dayWeatherLayout.setBackgroundResource(R.drawable.clouds)
                 "Mist" -> dayWeatherLayout.setBackgroundResource(R.drawable.mist)
                 "Fog" -> dayWeatherLayout.setBackgroundResource(R.drawable.fog)
+                "Clear" -> dayWeatherLayout.setBackgroundResource(R.drawable.clear)
                 else -> dayWeatherLayout.setBackgroundResource(R.drawable.mainback)
             }
         }

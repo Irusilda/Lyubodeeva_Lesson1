@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MyWeatherApp</string>
-    <string name="input_hint">Введите город</string>
+    <string name="input_hint">Enter the location</string>
     <string name="description_btn">search</string>
     <string name="emptyField">Поле не может быть пустым</string>
 </resources>

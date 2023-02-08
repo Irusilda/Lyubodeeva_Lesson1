@@ -1,8 +1,8 @@
 package com.example.myweatherapp
 
 data class OneDayData(
-
-    val current_temp: String?,
+    val fullName_city: String?,
+    val current_temp: Double?,
     val condition_text: String?,
-    val current_humidity: String?
+    val current_humidity: Int?
 )

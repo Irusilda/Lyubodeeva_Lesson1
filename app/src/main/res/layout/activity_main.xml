@@ -24,7 +24,7 @@
         android:labelFor="@id/btnSearch"
         android:minHeight="48dp"
         android:shadowColor="@color/white"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorHighlight="@color/black"
         android:textColorHint="@color/white"
         android:textColorLink="@color/white"
@@ -49,34 +49,44 @@
         android:id="@+id/temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:textColor="@color/white"
-        android:textSize="60sp"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userInput" />
+        app:layout_constraintTop_toBottomOf="@+id/final_city" />
 
     <TextView
         android:id="@+id/condition"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/userInput"
-        app:layout_constraintTop_toTopOf="@+id/humidity"
-        app:layout_constraintVertical_bias="0.006" />
+        app:layout_constraintTop_toTopOf="@+id/humidity" />
 
     <TextView
         android:id="@+id/humidity"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:gravity="center"
         android:textColor="@color/white"
-        android:textSize="34sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/userInput"
         app:layout_constraintTop_toBottomOf="@+id/temp" />
+
+    <TextView
+        android:id="@+id/final_city"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/userInput"
+        app:layout_constraintStart_toStartOf="@+id/userInput"
+        app:layout_constraintTop_toBottomOf="@+id/userInput" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

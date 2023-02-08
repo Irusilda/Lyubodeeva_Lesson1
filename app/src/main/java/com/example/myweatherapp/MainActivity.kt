@@ -1,5 +1,6 @@
 package com.example.myweatherapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -52,18 +53,23 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun parseData(result: String?) {
         val responseMainObject = result?.let { JSONObject(it) }
         val itemDayWeather = OneDayData(
-            responseMainObject?.optJSONObject("current")?.getString("temp_c"),
-            responseMainObject?.optJSONObject("current")?.getJSONObject("condition")?.getString("text"),
-            responseMainObject?.optJSONObject("current")?.getString("humidity")
+            responseMainObject?.optJSONObject("location")?.getString("name"),
+            responseMainObject?.optJSONObject("current")?.getDouble("temp_c"),
+            responseMainObject?.optJSONObject("current")?.getJSONObject("condition")
+                ?.getString("text"),
+            responseMainObject?.optJSONObject("current")?.getInt("humidity")
         )
         Log.d("MyLog", "$itemDayWeather")
         binding.apply {
-            temp.text = itemDayWeather.current_temp
+            finalCity.text = itemDayWeather.fullName_city
+            temp.text = itemDayWeather.current_temp?.toInt().toString() + "\u00B0" + "C"
             condition.text = itemDayWeather.condition_text
-            humidity.text = itemDayWeather.current_humidity
+            humidity.text = "Humidity " + itemDayWeather.current_humidity.toString() + "%"
+
 
             when(condition.text){
                 "Sunny" -> dayWeatherLayout.setBackgroundResource(R.drawable.sunny)
